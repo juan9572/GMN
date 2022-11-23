@@ -28,14 +28,14 @@ const raphsonSearch = (Fun, DerF, X0, Tol, Niter, err) => {
     if(Number.isNaN(x.x)){
         return {
             conclusion: "Valor no permitido" + x.x,
-            table: results
+            table: null
         };
     }
     let fx = math.evaluate(Fun, x);
     if (fx.im) {
         return {
             conclusion: "f(x) no esta definido en el dominio de la función = " + x.x,
-            table: results
+            table: null
         };
     }
     let fxDF = math.evaluate(DerF, x);

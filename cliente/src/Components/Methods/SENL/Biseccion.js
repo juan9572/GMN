@@ -37,6 +37,12 @@ const bisectionSearch = (Fun, Xi, Xs, Tol, Niter, err) => {
     let results = [];
     let count = 0;
     let x = {x: Xi};
+    if(Number.isNaN(x.x)){
+        return {
+            conclusion: "Valor no permitido" + x.x,
+            table: null
+        };
+    }
     let fI = math.evaluate(Fun, x);
     x = {x: Xs};
     let fS = math.evaluate(Fun, x);
@@ -49,6 +55,12 @@ const bisectionSearch = (Fun, Xi, Xs, Tol, Niter, err) => {
     }else{
         let Xm = (Xi + Xs)/2;
         x.x = Xm;
+        if(Number.isNaN(x.x)){
+            return {
+                conclusion: "Valor no permitido" + x.x,
+                table: null
+            };
+        }
         let fM = math.evaluate(Fun, x);
         if (fM.im) { 
             return {
@@ -78,6 +90,12 @@ const bisectionSearch = (Fun, Xi, Xs, Tol, Niter, err) => {
                 Xi = Xm;
                 x.x = Xi;
                 fS = math.evaluate(Fun, x);
+            }
+            if(Number.isNaN(x.x)){
+                return {
+                    conclusion: "Valor no permitido" + x.x,
+                    table: results
+                };
             }
             if (fS.im) { 
                 return {

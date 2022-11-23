@@ -37,9 +37,21 @@ const rfSearch = (Fun, a, b, Tol, Niter, err) => {
     let results = [];
     let count = 0;
     let x = {x: a};
+    if(Number.isNaN(x.x)){
+        return {
+            conclusion: "Valor no permitido" + x.x,
+            table: null
+        };
+    }
     let E = Tol + 1;
     let fXa = math.evaluate(Fun, x);
     x = {x: b};
+    if(Number.isNaN(x.x)){
+        return {
+            conclusion: "Valor no permitido" + x.x,
+            table: null
+        };
+    }
     let fXb = math.evaluate(Fun, x);
     if (fXa === 0){
         s = a;
@@ -50,6 +62,12 @@ const rfSearch = (Fun, a, b, Tol, Niter, err) => {
     }else{
         let Xr = b - fXb * ((b - a) / (fXb - fXa));
         x.x = Xr;
+        if(Number.isNaN(x.x)){
+            return {
+                conclusion: "Valor no permitido" + x.x,
+                table: null
+            };
+        }
         let fR = math.evaluate(Fun, x);
         if (fR.im) { 
             return {
@@ -78,6 +96,12 @@ const rfSearch = (Fun, a, b, Tol, Niter, err) => {
             s = Xr;
             Xr = b - fXb * ((b - a) / (fXb - fXa));
             x.x = Xr;
+            if(Number.isNaN(x.x)){
+                return {
+                    conclusion: "Valor no permitido" + x.x,
+                    table: results
+                };
+            }
             fR = math.evaluate(Fun, x);
             if (fR.im) { 
                 return {

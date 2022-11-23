@@ -3,26 +3,54 @@ import * as math from "mathjs";
 const secanteSearch = (Fun, X0, X1, Tol, Niter, err) => {
     let s = 0;
     let con = "";
-    if (Niter < 0 ) {
-        throw Error("Max iterations is < 0");
+    Niter = Niter > 500? 500: Niter;
+    if (Niter <= 0 ) {
+        return {
+            conclusion: "Las iteraciones deben ser mayor a 0",
+            table: null
+        };
     }
     if (X0 === X1) {
-        throw Error("x0 is equal to x1: x0 = " + X0 + " ^ x1 = " + X1);
+        return {
+            conclusion: "X0 debe ser distinto de X1",
+            table: null
+        };
     } 
     if (math.evaluate(Fun, { x: X0 }).im) { 
-        throw Error("a isn´t define in the domine of the function: Xi = " + X0);
+        return {
+            conclusion: "X0 no esta definido en el dominio de f(x) = " + X0,
+            table: null
+        };
     } 
     if (math.evaluate(Fun, { x: X1 }).im) { 
-        throw Error("b isn´t define in the domine of the function: Xs = " + X1);
+        return {
+            conclusion: "X1 no esta definido en el dominio de f(x) = " + X1,
+            table: null
+        };
     }
-    if (Tol < 0 ) {
-        throw Error("tol is an incorrect value: tol = " + Tol);
+    if (Tol <= 0 ) {
+        return {
+            conclusion: "La tolerancia deber ser mayor que 0",
+            table: null
+        };
     } 
     let results = [];
     let count = 0;
     let x = {x: X0};
+    if(Number.isNaN(x.x)){
+        return {
+            conclusion: "Valor no permitido" + x.x,
+            table: null
+        };
+    }
     let fX0 = math.evaluate(Fun, x);
     x = {x: X1};
+    if(Number.isNaN(x.x)){
+        return {
+            conclusion: "Valor no permitido" + x.x,
+            table: null
+        };
+    }
     let fX1 = math.evaluate(Fun, x);
     if (fX0 === 0){
         s = X0;
@@ -33,7 +61,19 @@ const secanteSearch = (Fun, X0, X1, Tol, Niter, err) => {
     }else{
         let Xa = X1 - fX1 * ((X1 - X0) / (fX1 - fX0));
         x.x = Xa;
+        if(Number.isNaN(x.x)){
+            return {
+                conclusion: "Valor no permitido" + x.x,
+                table: results
+            };
+        }
         let fXa = math.evaluate(Fun, x);
+        if (fXa.im) { 
+            return {
+                conclusion: "f(x) no esta definido en el dominio de la función = " + x.x,
+                table: null
+            };
+        }
         results.push(
             {
                 "Niter":count,
@@ -74,7 +114,19 @@ const secanteSearch = (Fun, X0, X1, Tol, Niter, err) => {
                 if (fX1 - fX0 !== 0){
                     Xa = X1 - fX1 * ((X1 - X0) / (fX1 - fX0));
                     x.x = Xa
+                    if(Number.isNaN(x.x)){
+                        return {
+                            conclusion: "Valor no permitido" + x.x,
+                            table: results
+                        };
+                    }
                     fXa = math.evaluate(Fun, x);
+                    if (fXa.im) { 
+                        return {
+                            conclusion: "f(x) no esta definido en el dominio de la función = " + x.x,
+                            table: results
+                        };
+                    }
                     E = math.abs(X1 - Xa);
                     count += 1;
                     results.push(

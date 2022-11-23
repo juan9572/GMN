@@ -19,6 +19,12 @@ const incrementalSearch = (Fun, X0, Delta, Niter) => {
     let results = [];
     let count = 0;
     let x = {x: X0};
+    if(Number.isNaN(x.x)){
+        return {
+            conclusion: "Valor no permitido" + x.x,
+            table: null
+        };
+    }
     let fX = math.evaluate(Fun, x);
     if (fX.im) { 
         return{
@@ -44,6 +50,12 @@ const incrementalSearch = (Fun, X0, Delta, Niter) => {
     }else{
         let X1 = X0 + Delta;
         x.x = X1;
+        if(Number.isNaN(x.x)){
+            return {
+                conclusion: "Valor no permitido" + x.x,
+                table: results
+            };
+        }
         let count = 1;
         let f1 = math.evaluate(Fun, x);
         if (f1.im) {
@@ -57,6 +69,12 @@ const incrementalSearch = (Fun, X0, Delta, Niter) => {
             fX = f1;
             X1 = X0 + Delta;
             x.x = X1;
+            if(Number.isNaN(x.x)){
+                return {
+                    conclusion: "Valor no permitido" + x.x,
+                    table: results
+                };
+            }
             f1 = math.evaluate(Fun, x);
             if (f1.im) { 
                 return{

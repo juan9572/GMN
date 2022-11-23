@@ -3,21 +3,49 @@ import * as math from "mathjs";
 const nmrSearch = (Fun, DerF, DerS, X0, Tol, Niter, err) => {
     let s = X0;
     let con = "";
-    if (Niter < 0 ) {
-        throw Error("Max iterations is < 0");
+    Niter = Niter > 500? 500: Niter;
+    if (Niter <= 0 ) {
+        return {
+            conclusion: "Las iteraciones deben ser mayor a 0",
+            table: null
+        };
     } 
     if (math.evaluate(Fun, { x: X0 }).im) { 
-        throw Error("a isn´t define in the domine of the function: Xi = " + X0);
+        return {
+            conclusion: "X0 no esta definido en el dominio de f(x) = " + X0,
+            table: null
+        };
     } 
-    if (Tol < 0 ) {
-        throw Error("tol is an incorrect value: tol = " + Tol);
+    if (Tol <= 0 ) {
+        return {
+            conclusion: "La tolerancia deber ser mayor que 0",
+            table: null
+        };
     } 
     let results = [];
     let count = 0;
     let x = {x: s};
+    if(Number.isNaN(x.x)){
+        return {
+            conclusion: "Valor no permitido" + x.x,
+            table: null
+        };
+    }
     let fx = math.evaluate(Fun, x);
     let fxDF = math.evaluate(DerF, x);
+    if (fxDF.im) { 
+        return {
+            conclusion: "f'(x) no esta definido en el dominio de la función = " + x.x,
+            table: null
+        };
+    }
     let fxDS = math.evaluate(DerS, x);
+    if (fxDS.im) { 
+        return {
+            conclusion: "f''(x) no esta definido en el dominio de la función = " + x.x,
+            table: null
+        };
+    }
     let E = 100;
     results.push(
         {
@@ -31,9 +59,33 @@ const nmrSearch = (Fun, DerF, DerS, X0, Tol, Niter, err) => {
     );
     while (E > Tol && fx !== 0 && fxDF !== 0 && count < Niter){
         x.x = (x.x - ((fx * fxDF) / (math.pow(fxDF, 2) - fx * fxDS)))
+        if(Number.isNaN(x.x)){
+            return {
+                conclusion: "Valor no permitido" + x.x,
+                table: results
+            };
+        }
         fx = math.evaluate(Fun, x);
+        if (fx.im) { 
+            return {
+                conclusion: "f(x) no esta definido en el dominio de la función = " + x.x,
+                table: results
+            };
+        }
         fxDF = math.evaluate(DerF, x);
+        if (fxDF.im) { 
+            return {
+                conclusion: "f'(x) no esta definido en el dominio de la función = " + x.x,
+                table: results
+            };
+        }
         fxDS = math.evaluate(DerS, x);
+        if (fxDS.im) { 
+            return {
+                conclusion: "f''(x) no esta definido en el dominio de la función = " + x.x,
+                table: results
+            };
+        }
         E = err === 1? math.abs(x.x - s): math.abs(math.abs(x.x - s) /x.x);
         s = x.x;
         count += 1;

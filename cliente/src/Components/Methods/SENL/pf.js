@@ -37,6 +37,12 @@ const pfSearch = (Fun, GFun, X0, Tol, Niter, err) => {
     let results = [];
     let count = 0;
     let x = {x: s};
+    if(Number.isNaN(x.x)){
+        return {
+            conclusion: "Valor no permitido" + x.x,
+            table: null
+        };
+    }
     let fx = math.evaluate(Fun, x);
     let gx = math.evaluate(GFun, x);
     let E = 100;
@@ -57,6 +63,12 @@ const pfSearch = (Fun, GFun, X0, Tol, Niter, err) => {
             };
         }
         x.x = math.evaluate(GFun, x);
+        if(Number.isNaN(x.x)){
+            return {
+                conclusion: "Valor no permitido" + x.x,
+                table: results
+            };
+        }
         if (math.evaluate(Fun, x).im) {
             return {
                 conclusion: "f(x) no esta definido en el dominio de la función = " + x.x,
