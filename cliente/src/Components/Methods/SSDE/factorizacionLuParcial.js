@@ -10,7 +10,6 @@ const zeroInDiagonal = M => {
     }
     return false;
   };
-
 const copyFunction = inObject => {
     let outObject, value, key;
     if (typeof inObject !== "object" || inObject === null) {
@@ -23,7 +22,6 @@ const copyFunction = inObject => {
     }
     return outObject;
   };
-  
   const zeros = (a) => {
     let result = new Array(a);
     for (let i = 0; i < a; i++) {
@@ -34,14 +32,10 @@ const copyFunction = inObject => {
     }
     return result;
   };
-
   const progressiveSustitution = (A, B) => {
     let n = A[0].length;
-  
     let xResult = new Array(n);
-  
     xResult[0] = divide(B[0], A[0][0]);
-  
     for (let i = 1; i < n; i++) {
       let suma = 0;
       for (let j = 0; j < i; j++) {
@@ -51,7 +45,6 @@ const copyFunction = inObject => {
     }
     return xResult;
   };
-
   const eye = a => {
     let result = new Array(a);
     for (let i = 0; i < a; i++) {
@@ -61,30 +54,24 @@ const copyFunction = inObject => {
     }
     return result;
   };
-
   const luPartialFunction = (matrixA, B) => {
     let results = {
       iterations: [],
       conclusion: undefined,
       finalSolution: []
     };
-  
     let n = matrixA[0].length;
     let L = eye(n);
     let U = zeros(n);
     let P = eye(n);
     let M = copyFunction(matrixA);
-  
     if (zeroInDiagonal(matrixA)) {
-      throw Error("Some elements in the diagonal are 0. The method cannot be executed.");
+      throw Error("Algunos elementos de la diagonal son 0. El método no se puede ejecutar");
     }
     if (det(matrixA) === 0) {
-      throw Error("det(A) is 0. The method cannot be executed.");
+      throw Error("La determinante de la matriz no puede ser cero");
     }
     for (let i = 0; i < n - 1; i++) {
-      //row change
-       //max col
-       
       let indexMax = new Array(2);
       let tempM = 0;
       for (let j = i + 1; j < n; j++) {
@@ -94,21 +81,16 @@ const copyFunction = inObject => {
           indexMax[1]=i;
         }
       }
-  
       if(tempM > abs(M[i][i])){
-        
         for(let j = i; j < n; j++){
           let aux1 = M[indexMax[0]][j];
           M[indexMax[0]][j] = M[i][j];
           M[i][j] = aux1;
-  
           let aux2 = P[indexMax[0]][j];
           P[indexMax[0]][j] = P[i][j];
           P[i][j] = aux2;
         }
-  
         if(i>1){
-  
           for(let j = 0; j < i-1; j++){
             let aux1 = L[indexMax[0]][j];
             L[indexMax[0]][j] = L[i][j];
@@ -116,24 +98,18 @@ const copyFunction = inObject => {
           }
         }
       }
-  
-      // Multipliers
       for (let j = i + 1; j < n; j++) {
         if (M[j][i] !== 0) {
-  
           L[j][i] = M[j][i] / M[i][i];
           let auxOp = Array(n + 1);
-  
           for (let k = i; k < n; k++) {
             auxOp[k] = M[j][k] - (M[j][i] / M[i][i]) * M[i][k];
           }
-  
           for (let k = i; k < n; k++) {
             M[j][k] = auxOp[k];
           }
         }
       }
-      
       for (let j = i; j < n; j++) {
         U[i][j] = M[i][j];
       }
@@ -147,10 +123,9 @@ const copyFunction = inObject => {
         P: copyFunction(P)
       });
     }
-  
     let resultZ = progressiveSustitution(L, B);
     let resultX = usolve(U, resultZ);
-    results.conclusion = "After applying regressive substitution we get :";
+    results.conclusion = "Tras aplicar la sustitución regresiva y progresiva obtenemos:";
     results.finalSolution = resultX;
     return results;
   };

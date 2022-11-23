@@ -49,13 +49,13 @@ const copyFunction = inObject => {
     let m = matrixA.length;
     let n = matrixA[0].length;
     if (m !== n) {
-      throw Error("The matrix is not square");
+      throw Error("La matriz no es cuadrada");
     }
     if (m !== B.length) {
-      throw Error("B has different dimension");
+      throw Error("B tiene dimensiones distintas");
     }
     if (det(matrixA) === 0) {
-      throw Error("Determinant of the matrix cannot be zero");
+      throw Error("La determinante de la matriz no puede ser cero");
     }
     let M = new Array(n);
     for (let i = 0; i < n; i++) {
@@ -67,43 +67,26 @@ const copyFunction = inObject => {
       }
       M[i][n] = B[i][0];
     }
-  
     let marca = new Array(n);
     for (let i = 0; i < n; i++) {
       marca[i] = i + 1;
     }
-  
-    results.iterations.push(copyFunction(M));
-  
-    //inicia solucion 
-  
+    results.iterations.push(copyFunction(M));  
     for (let i = 0; i < n - 1; i++) {
-  
       let indexMax = new Array(2);
-  
-      
       indexMax = findMaxElement(M, i, i);
-      let colMayor = indexMax[1];
-  
-      
-      // cambio de columna
-  
+      let colMayor = indexMax[1];  
       if(i !== colMayor){
       for (let j = 0; j < n; j++) {
         let temp = M[j][indexMax[1]];
         M[j][indexMax[1]] = M[j][i];
         M[j][i] = temp;
       }
-  
-      
       let temp = marca[colMayor];
       marca[colMayor] = marca[i];
       marca[i] = temp;
     }
-  
-      //Cambio de fila
       if( i !== indexMax[0]){
-  
       for (let j = i; j < n + 1; j++) {
         let temp = M[indexMax[0]][j];
         M[indexMax[0]][j] = M[i][j];
@@ -121,26 +104,20 @@ const copyFunction = inObject => {
           }
         }
       }
-    
-      
       results.iterations.push(copyFunction(M));
     }
-  
-    results.conclusion = "After applying regressive substitution we get :";
+    results.conclusion = "Tras aplicar la sustitución regresiva y progresiva obtenemos :";
     let resultX = usolve(
       M.map(function(val) {
-        // A = all columns of M except the last one
         return val.slice(0, -1);
       }),
-      getCol(M, m), // B = last column of M
+      getCol(M, m),
     );
-    
     let tempAr = copyFunction(resultX);
     for (let i = 0; i < n; i++) {
       resultX[marca[i]-1] = tempAr[i];
     }
     results.finalSolution = resultX;
-  
     return results;
   };
   

@@ -30,13 +30,13 @@ const gaussPartialFunction = (matrixA, B) => {
     let m = matrixA.length;
     let n = matrixA[0].length;
     if (m !== n) {
-      throw Error("The matrix is not square");
+      throw Error("La matriz no es cuadrada");
     }
     if (m !== B.length) {
-      throw Error("B has different dimension");
+      throw Error("B tiene dimensiones distintas");
     }
     if (det(matrixA) === 0) {
-      throw Error("Determinant of the matrix cannot be zero");
+      throw Error("La determinante de la matriz no puede ser cero");
     }
     let M = new Array(n);
     for (let i = 0; i < n; i++) {
@@ -83,12 +83,11 @@ const gaussPartialFunction = (matrixA, B) => {
     }
     let resultX = usolve(
       M.map(function(val) {
-        // A = all columns of M except the last one
         return val.slice(0, -1);
       }),
-      getCol(M, n) // B = last column of M
+      getCol(M, n)
     );
-    results.conclusion = "After applying regressive substitution we get :";
+    results.conclusion = "Tras aplicar la sustitución regresiva y progresiva obtenemos :";
     results.finalSolution = resultX;
     return results;
   };

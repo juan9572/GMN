@@ -12,7 +12,6 @@ const copyFunction = inObject => {
     }
     return outObject;
   };
-  
   const zeros = (a) => {
     let result = new Array(a);
     for (let i = 0; i < a; i++) {
@@ -23,14 +22,10 @@ const copyFunction = inObject => {
     }
     return result;
   };
-
   const progressiveSustitution = (A, B) => {
     let n = A[0].length;
-  
     let xResult = new Array(n);
-  
     xResult[0] = divide(B[0], A[0][0]);
-  
     for (let i = 1; i < n; i++) {
       let suma = 0;
       for (let j = 0; j < i; j++) {
@@ -40,7 +35,6 @@ const copyFunction = inObject => {
     }
     return xResult;
   };
-
   const eye = a => {
     let result = new Array(a);
     for (let i = 0; i < a; i++) {
@@ -50,7 +44,6 @@ const copyFunction = inObject => {
     }
     return result;
   };
-
 const luSimpleFunction = (matrixA, B) => {
     let results = {
       iterations: [],
@@ -58,44 +51,33 @@ const luSimpleFunction = (matrixA, B) => {
       finalSolution: []
     };
     let n = matrixA[0].length;
-  
     let L = eye(n);
     let U = zeros(n);
-  
     let M = copyFunction(matrixA);
-  
     let xZeros = new Array(n);
-  
     if (det(matrixA) === 0) {
-      throw Error("Determinant of the matrix cannot be zero");
+      throw Error("La determinante de la matriz no puede ser cero");
     }
-    
     for (let i = 0; i < n; i++) {
       xZeros[i] = new Array(1);
       xZeros[i][0] = 0;
     }
-  
     for (let i = 0; i < n - 1; i++) {
       if (M[i][i] === 0) {
-        throw Error("There is a 0 in the diagonal.");
+        throw Error("Algunos elementos de la diagonal son 0. El método no se puede ejecutar");
       }
-      // Multipliers
       for (let j = i + 1; j < n; j++) {
         if (M[j][i] !== 0) {
-  
           L[j][i] = divide(M[j][i], M[i][i]);
-  
           let auxOp = Array(n + 1);
           for (let k = i; k < n; k++) {
             auxOp[k] = add(M[j][k] ,- multiply(divide(M[j][i], M[i][i]), M[i][k]));
           }
-  
           for (let k = i; k < n; k++) {
             M[j][k] = auxOp[k];
           }
         }
       }
-      //U
       for (let j = i; j < n; j++) {
         U[i][j] = M[i][j];
       }
@@ -108,12 +90,10 @@ const luSimpleFunction = (matrixA, B) => {
         U: copyFunction(U)
       });
     }
-  
     U[n - 1][n - 1] = M[n - 1][n - 1];
-  
     let resultZ = progressiveSustitution(L, B);
     let resultX = usolve(U, resultZ);
-    results.conclusion = "After applying regressive substitution we get :";
+    results.conclusion = "Tras aplicar la sustitución regresiva y progresiva obtenemos :";
     results.finalSolution = resultX;
     return results;
   };
