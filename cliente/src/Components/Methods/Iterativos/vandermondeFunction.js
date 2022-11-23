@@ -15,27 +15,27 @@ const vandermondeFunction = points => {
     coeffs: []
   };
   if(hasDuplicates(points.x)){
-    throw Error("X has duplicates, a value of X can only be declared once: x points = " +  points.x)
+    throw Error("X tiene duplicados, un valor de x solo puede ser declarado una vez: puntos de x repetidos = " +  points.x)
   }
   if (hasDuplicates(points.y)) {
-    throw Error("Y has duplicates, a value of Y can only be declared once: y points = " + points.y);
+    throw Error("Y tiene duplicados, un valor de y solo puede ser declarado una vez: puntos de y repetidos = " + points.y);
   }
-  let degree = points.x.length; // number of points
+  let degree = points.x.length;
   let matrixA = Array(degree);
   let B = Array(degree);
   let ai = Array(degree);
   for (let i = 0; i < degree; i++) {
     matrixA[i] = new Array(degree).fill(0);
-    B[i] = [points.y[i]]; // B is a column matrix with yi values
-    ai[i] = ["a_" + (i + 1)]; // Just for displaying the equation we're solving
+    B[i] = [points.y[i]]; 
+    ai[i] = ["a_" + (i + 1)]; 
     for (let j = 0; j < degree; j++) {
-      matrixA[i][j] = points.x[i] ** (degree - j - 1); // We create the Vandermonde matrix
+      matrixA[i][j] = points.x[i] ** (degree - j - 1); 
     }
   }
   results.matrixA = matrixA;
   results.B = B;
   results.ai = ai;
-  // Apply method to get x (gauss simple for example)
+ 
   results.polynom = gaussSimpleFunction(matrixA, B).finalSolution.map(coeff =>
     format(coeff[0], { notation: "fixed", precision: 6 })
   );
