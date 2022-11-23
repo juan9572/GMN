@@ -23,7 +23,7 @@ import {
   };
 
   const triu = m => {
-    if (m.length !== m[0].length) throw new Error("Not a square matrix");
+    if (m.length !== m[0].length) throw new Error("La matriz no es cuadrada");
     let returnMatrix = Array(m.length);
     for (let i = 0; i < m.length; i++) {
       returnMatrix[i] = new Array(m[0].length).fill(0);
@@ -36,7 +36,7 @@ import {
   };
 
   const tril = m => {
-    if (m.length !== m[0].length) throw new Error("Not a square matrix");
+    if (m.length !== m[0].length) throw new Error("La matriz no es cuadrada");
     let returnMatrix = Array(m.length);
     for (let i = 0; i < m.length; i++) {
       returnMatrix[i] = new Array(m[0].length).fill(0);
@@ -103,23 +103,23 @@ import {
     let count = 0;
     let xAnt;
     let x;
-    // Check if some elements from the diagonal are 0
+    
     if (zeroInDiagonal(matrixA)) {
-      throw Error("Some elements in the diagonal are 0. The method cannot be executed.");
+      throw Error("Algunos elementos de la diagonal son 0. El método no se puede ejecutar.");
     } 
     if (NMax < 0 ) {
-      throw Error("Max iterations is < 0: iterations = " + NMax);
+      throw Error("La cantidad maxima de iteraciones es < 0: iteraciones = " + NMax);
     } 
     if(tol < 0 ) {
-      throw Error("tol is an incorrect value: tol + " + tol);
+      throw Error("La tolerancia no puede ser menor que cero: tol + " + tol);
     } 
-    // Check if det(A) = 0
+
     if (det(matrixA) === 0) {
-      throw Error("det(A) is 0. The method cannot be executed.");
+      throw Error("det(A) es 0. El método no se puede ejecutar.");
     }
     D = diag(diag(matrixA));
-    L = add(unaryMinus(tril(matrixA)), D); // L = -lowerTriangle + D
-    U = add(unaryMinus(triu(matrixA)), D); // U = -upperTriangle + D
+    L = add(unaryMinus(tril(matrixA)), D); 
+    U = add(unaryMinus(triu(matrixA)), D); 
     if (l === 1) {
       // Jacobi
       T = multiply(inv(D), add(L, U));
@@ -144,7 +144,7 @@ import {
     results.spectralRadiance = max(abs(eig(T).lambda.x));
     if (results.spectralRadiance > 1) {
       results.error =
-        "Error : the spectral radiance is superior to 1, the method cannot be executed";
+        "Error : El radio espectral es superior a 1, El método no se puede ejecutar.";
       return results;
     }
     xAnt = copyFunction(initialValueX0);
@@ -155,7 +155,6 @@ import {
       if (normValue === 1 || normValue === "inf") {
         error = norm(subtract(xAnt, x), normValue);
       }
-      //normP only accepts norms other different of 1 and inf
       else {
         error = normP(subtract(xAnt, x), normValue);
       }
@@ -164,7 +163,6 @@ import {
       count += 1;
       results.iterations.push({"Niter": count, "E":error, "x":x});
     }
-    // handle the case where it couldn't find with this NMAX
     return results;
   };
   
