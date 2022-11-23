@@ -17,7 +17,7 @@ const Metodos = () => {
         <div className="metodos__wrapper SENL">
             {
               listaMetodos.filter(metodo => metodo.category === 'SENL').map(
-                ({id, icon, title, info, path}) => {
+                ({id, icon, title, path}) => {
                   return (
                       <Card className='metodos__metodo' key={id}>
                         <span>
@@ -26,9 +26,6 @@ const Metodos = () => {
                         <h3>
                             {title}
                         </h3>
-                        <small>
-                            {info}
-                        </small>
                         <Link to={path} className="btn sm">
                             Ver más
                             <AiFillCaretRight />
@@ -44,7 +41,7 @@ const Metodos = () => {
         <div className="metodos__wrapper SENL">
             {
               listaMetodos.filter(metodo => metodo.category === 'SSDE').map(
-                ({id, icon, title, info, path}) => {
+                ({id, icon, title, path}) => {
                   return (
                       <Card className='metodos__metodo' key={id}>
                         <span>
@@ -53,9 +50,6 @@ const Metodos = () => {
                         <h3>
                             {title}
                         </h3>
-                        <small>
-                            {info}
-                        </small>
                         <Link to={path} className="btn sm">
                             Ver más
                             <AiFillCaretRight />
@@ -71,7 +65,7 @@ const Metodos = () => {
         <div className="metodos__wrapper SENL">
             {
               listaMetodos.filter(metodo => metodo.category === 'Interpolation').map(
-                ({id, icon, title, info, path}) => {
+                ({id, icon, title, path}) => {
                   return (
                       <Card className='metodos__metodo' key={id}>
                         <span>
@@ -80,9 +74,6 @@ const Metodos = () => {
                         <h3>
                           {title}
                         </h3>
-                        <small>
-                          {info}
-                        </small>
                         <Link to={path} className="btn sm">
                           Ver más
                           <AiFillCaretRight />
