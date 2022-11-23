@@ -132,7 +132,7 @@ const TableForm = () => {
             return (
               <BlockMath
                 key={index}
-                math={"Step_" + index + " = " + renderLatexMatrix(matrix, 6)}
+                math={index + " = " + renderLatexMatrix(matrix, 6)}
               />
             );
           })}
