@@ -27,7 +27,7 @@ const splinesCubicFunction = points => {
       throw Error("X tiene duplicados, un valor de x solo puede ser declarado una vez: puntos de x repetidos = " +  points.x)
     }
     if (hasDuplicates(points.y)) {
-      throw Error("Y tiene duplicados, un valor de x solo puede ser declarado una vez: puntos de y repetidos = " + points.y);
+      throw Error("Y tiene duplicados, un valor de y solo puede ser declarado una vez: puntos de y repetidos = " + points.y);
     }
   
     let n = points.x.length;
