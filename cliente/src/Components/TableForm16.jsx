@@ -87,7 +87,7 @@ const TableForm = () => {
               }));
             }}
           >
-            Change the points
+            Cambiar puntos
           </button>
         </CenteredColumn>
       )}
@@ -105,9 +105,9 @@ const TableForm = () => {
                   renderLatexMatrix(results.B)
                 }
               />
-              <p>Polynomial coefficients :</p>
+              <p>Coeficientes del polinomio :</p>
               <p>[{results.polynom.join(", ")}]</p>
-              <p>Vandermonde polynom</p>
+              <p>Polinomio de Vandermonde</p>
               <BlockMath math={renderLatexPolynom(results.polynom)} />
             </div>
           ) : (
