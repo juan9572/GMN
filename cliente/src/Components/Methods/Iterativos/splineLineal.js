@@ -23,10 +23,10 @@ const splinesLinearFunction = points => {
       tracerCoefficient: [],
     };
     if(hasDuplicates(points.x)){
-      throw Error("X has duplicates, a value of X can only be declared once: x points = " +  points.x)
+      throw Error("X tiene duplicados, un valor de x solo puede ser declarado una vez: puntos de x repetidos = " +  points.x)
     }
     if (hasDuplicates(points.y)) {
-      throw Error("Y has duplicates, a value of Y can only be declared once: y points = " + points.y);
+      throw Error("Y tiene duplicados, un valor de y solo puede ser declarado una vez: puntos de y repetidos = " + points.y);
     }
     
     let n = points.x.length;
@@ -50,7 +50,6 @@ const splinesLinearFunction = points => {
       return;
     }
   
-    // interpolation conditions
   
     for (let i = 0; i < n - 1; i++) {
       A[i + 1][2 * i] = parseFloat(points.x[i + 1]);
@@ -60,8 +59,7 @@ const splinesLinearFunction = points => {
     A[0][0] = parseFloat(points.x[0]);
     A[0][1] = 1;
     b[0][0] = parseFloat(points.y[0]);
-  
-    // continuity conditions
+
     for (let i = 1; i < n - 1; i++) {
       A[n - 1 + i][2 * i - 2] = parseFloat(points.x[i]);
       A[n - 1 + i][2 * i - 1] = 1;
