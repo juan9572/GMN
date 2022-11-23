@@ -85,7 +85,7 @@ const TableForm = () => {
                 }));
               }}
             >
-              Change the points
+              Cambiar puntos
             </button>
           </CenteredColumn>
         )}
@@ -93,7 +93,7 @@ const TableForm = () => {
           <div>
             {!error ? (
               <div>
-                <p>Lagrange interpolating polynomials</p>
+                <p>Polinomios de interpolacion de Lagrange</p>
                 {results.interpolationPolynomials.length !== 0 && (
                   <Table id="table" style={{overflowX:"scroll"}}>
                   <Thead>
@@ -118,7 +118,7 @@ const TableForm = () => {
                   </Tbody>
                 </Table>
                 )}
-                <p>Lagrange polynom</p>
+                <p>Polinomio de Lagrange</p>
                 {results.polynom && setPlotState() && (
                   <div>
                     <p>{results.polynom}</p>
