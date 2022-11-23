@@ -72,7 +72,7 @@ const TableForm = () => {
     <>
       <div>
         {methodState.points === "input" ? (
-          <CenteredColumn>
+          <CenteredColumn style={{color:'#000'}}>
             <SetOfPointsInput
               points={points}
               setPoints={points => setPoints(points)}
@@ -80,7 +80,7 @@ const TableForm = () => {
             />
           </CenteredColumn>
         ) : (
-          <CenteredColumn>
+          <CenteredColumn style={{color:'#000'}}>
             <Latex displayMode={true}>{`$$` + latexTable + `$$`}</Latex>
             <button className="btn"
               onClick={() => {

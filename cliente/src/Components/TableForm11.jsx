@@ -131,7 +131,7 @@ const TableForm = () => {
           {results.iterations.map((iter, index) => {
             return (
               <div key={index}>
-                <p>Step {index + 1}</p>
+                <p>{index + 1}</p>
                 <BlockMath math={"M = " + renderLatexMatrix(iter.M, 6)} />
                 <BlockMath math={"L = " + renderLatexMatrix(iter.L, 6)} />
                 <BlockMath math={"U = " + renderLatexMatrix(iter.U, 6)} />

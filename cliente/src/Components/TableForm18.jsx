@@ -67,7 +67,7 @@ const TableForm = () => {
     <>
       <div>
         {methodState.points === "input" ? (
-          <CenteredColumn>
+          <CenteredColumn style={{color:'#000'}}>
             <SetOfPointsInput
               points={points}
               setPoints={points => setPoints(points)}
@@ -75,7 +75,7 @@ const TableForm = () => {
             />
           </CenteredColumn>
         ) : (
-          <CenteredColumn>
+          <CenteredColumn style={{color:'#000'}}>
             <Latex displayMode={true}>{`$$` + latexTable + `$$`}</Latex>
             <button className="btn"
               onClick={() => {
@@ -92,7 +92,7 @@ const TableForm = () => {
         {results ? (
           <div>
             {!error ? (
-              <div>
+              <div style={{color:'#000'}}>
                 <p>Polinomios de interpolacion de Lagrange</p>
                 {results.interpolationPolynomials.length !== 0 && (
                   <Table id="table" style={{overflowX:"scroll"}}>

@@ -38,8 +38,6 @@ const TableForm = () => {
         }
       );
     }
-    const a = functionPlot.globals.COLORS;
-    console.log(a);
     functionPlot({
       title: 'Graficas',
       target: "#plot",
@@ -72,7 +70,7 @@ const TableForm = () => {
     <>
       <div>
         {methodState.points === "input" ? (
-          <CenteredColumn>
+          <CenteredColumn style={{color:'#000'}}>
             <SetOfPointsInput
               points={points}
               setPoints={points => setPoints(points)}
@@ -80,7 +78,7 @@ const TableForm = () => {
             />
           </CenteredColumn>
         ) : (
-          <CenteredColumn>
+          <CenteredColumn style={{color:'#000'}}>
             <Latex displayMode={true}>{`$$` + latexTable + `$$`}</Latex>
             <button className="btn"
               onClick={() => {

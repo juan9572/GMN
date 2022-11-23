@@ -70,7 +70,7 @@ const TableForm = () => {
     <>
       <div>
       {methodState.points === "input" ? (
-        <CenteredColumn>
+        <CenteredColumn style={{color:'#000'}}>
           <SetOfPointsInput
             points={points}
             setPoints={points => setPoints(points)}
@@ -78,7 +78,7 @@ const TableForm = () => {
           />
         </CenteredColumn>
       ) : (
-        <CenteredColumn>
+        <CenteredColumn style={{color:'#000'}}>
           <Latex displayMode={true}>{`$$` + latexTable + `$$`}</Latex>
           <button className="btn"
             onClick={() => {
@@ -95,7 +95,7 @@ const TableForm = () => {
       {results ? (
         <div>
           {!error ? (
-            <div>
+            <div style={{color:'#000'}}>
               <p>Tabla de diferencias divididas de Newton</p>
               {
                 results.dividedDifference && (

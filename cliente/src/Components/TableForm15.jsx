@@ -169,7 +169,7 @@ const TableForm = () => {
                   }));
                 }}
               >
-                Change x0
+                Cambiar x0
               </button>
             </div>
           )
@@ -194,7 +194,7 @@ const TableForm = () => {
                   }));
                 }}
               >
-                Change B
+                Cambiar B
               </div>
             </div>
           )
@@ -205,7 +205,7 @@ const TableForm = () => {
           <BlockMath math={"T = " + renderLatexMatrix(results.T, 6)} />
           <BlockMath math={"C = " + renderLatexMatrix(results.C, 6)} />
           <p>
-            <strong>Spectral radius</strong> :{" "}
+            <strong>Radio espectral</strong> :{" "}
             {results.spectralRadiance &&
               results.spectralRadiance}
           </p>

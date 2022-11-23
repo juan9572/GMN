@@ -4,11 +4,11 @@ import './tableForm.css'
 import { useState } from "react";
 import functionPlot from "function-plot";
 import raphsonSearch from "./Methods/SENL/raphson";
-import * as math from 'mathjs';
 
 const TableForm = () => {
   const [dataTable,setDataTable] = useState(null);
   const [conclusion,setConclusion] = useState(null);
+  const [functions, setFunctions] = useState(null);
   const getDataForm = async (childData) => {
     const res = raphsonSearch(
       childData.Function.value,
@@ -20,6 +20,19 @@ const TableForm = () => {
     );
     setConclusion(res.conclusion);
     setDataTable(res.table);
+    let data = [
+      {
+        fn: childData.Function.value,
+        sampler: 'builtIn',
+        graphType: 'polyline'
+      },
+      {
+        fn: childData.firstDerivFunction.value,
+        sampler: 'builtIn',
+        graphType: 'polyline'
+      }
+    ];
+    setFunctions([childData.Function.value,childData.firstDerivFunction.value]);
     functionPlot({
       title: 'y =' + childData.Function.value,
       target: "#plot",
@@ -28,14 +41,7 @@ const TableForm = () => {
       yAxis: { domain: [-10, 10] },
       xAxis: { domain: [-10, 10] },
       grid: true,
-      data: [
-        {
-          fn: childData.Function.value,
-          color:'blue',
-          sampler: 'builtIn',
-          graphType: 'polyline'
-        }
-      ]
+      data: data
     });
   };
   return (
@@ -57,6 +63,25 @@ const TableForm = () => {
       </section>
       <section className="plot" id="plot" style={{color:'#000'}}>
       </section>
+      {functions ? 
+        (
+          functions.map((fn ,index) => {
+            console.log(index);
+            return (
+              <div key={index} style={{
+                background: `hsl(
+                  ${functionPlot.globals.COLORS[index].h},
+                  ${functionPlot.globals.COLORS[index].s * 100}%,
+                  ${functionPlot.globals.COLORS[index].l * 100}%
+                ) `,
+                color: '#fff'
+                }}>
+                {fn}
+              </div>
+            )
+          })
+        ) : ""
+      }
     </>
   )
 }

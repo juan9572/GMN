@@ -31,31 +31,32 @@ const TableForm = () => {
   );
   const [error, setError] = useState(null);
   const [results, setResults] = useState(undefined);
+  const plotState = () =>{
+    functionPlot({
+      title: 'y =' + polynomFromArray(results.polynom),
+      target: "#plot",
+      width: window.screen.width < 800? window.screen.width < 450? 300 : 450 : 800,
+      height: window.screen.height < 500? 350: 500,
+      yAxis: { domain: [-10, 10] },
+      xAxis: { domain: [-10, 10] },
+      grid: true,
+      data: [
+        {
+          fn: polynomFromArray(results.polynom),
+          color:'blue',
+          sampler: 'builtIn',
+          graphType: 'polyline'
+        }
+      ]
+    });
+    return true;
+  };
   useEffect(() => {
     setError(null);
     setLatexTable(renderLatexTable(points));
     if (methodState.points !== "input") {
       try {
         setResults(vandermondeFunction(points));
-        if(results !== undefined){
-          functionPlot({
-            title: 'y =' + polynomFromArray(results.polynom),
-            target: "#plot",
-            width: window.screen.width < 800? window.screen.width < 450? 300 : 450 : 800,
-            height: window.screen.height < 500? 350: 500,
-            yAxis: { domain: [-10, 10] },
-            xAxis: { domain: [-10, 10] },
-            grid: true,
-            data: [
-              {
-                fn: polynomFromArray(results.polynom),
-                color:'blue',
-                sampler: 'builtIn',
-                graphType: 'polyline'
-              }
-            ]
-          });
-        }
       } catch (e) {
         setError(e + "");
         setResults(undefined);
@@ -69,7 +70,7 @@ const TableForm = () => {
     <>
       <div>
       {methodState.points === "input" ? (
-        <CenteredColumn>
+        <CenteredColumn style={{color:'#000'}}>
           <SetOfPointsInput
             points={points}
             setPoints={points => setPoints(points)}
@@ -77,7 +78,7 @@ const TableForm = () => {
           />
         </CenteredColumn>
       ) : (
-        <CenteredColumn>
+        <CenteredColumn style={{color:'#000'}}>
           <Latex displayMode={true}>{`$$` + latexTable + `$$`}</Latex>
           <button className="btn"
             onClick={() => {
@@ -92,11 +93,11 @@ const TableForm = () => {
         </CenteredColumn>
       )}
       </div>
-      {results && !error ? (
+      {results && plotState() && !error ? (
         <div>
           {!error ? (
-            <div>
-              <p>Vandermonde matrix</p>
+            <div style={{color:'#000'}}>
+              <p>Vandermonde matriz</p>
               <BlockMath
                 math={
                   renderLatexMatrix(results.matrixA) +
