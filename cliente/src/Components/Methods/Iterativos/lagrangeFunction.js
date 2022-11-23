@@ -9,10 +9,10 @@ const lagrangeFunction = points => {
       interpolationPolynomials: []
     };
     if(hasDuplicates(points.x)){
-      throw Error("X has duplicates, a value of X can only be declared once: x points = " +  points.x)
+      throw Error("X tiene duplicados, un valor de x solo puede ser declarado una vez: puntos de x repetidos = " +  points.x)
     }
     if (hasDuplicates(points.y)) {
-      throw Error("Y has duplicates, a value of Y can only be declared once: y points = " + points.y);
+      throw Error("Y tiene duplicados, un valor de x solo puede ser declarado una vez: puntos de y repetidos = " + points.y);
     }
     let degree = points.x.length;
     for (let k = 0; k < degree; k++) {
