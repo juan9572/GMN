@@ -24,10 +24,10 @@ const splinesCubicFunction = points => {
       tracerCoefficient: [],
     };
     if(hasDuplicates(points.x)){
-      throw Error("X has duplicates, a value of X can only be declared once: x points = " +  points.x)
+      throw Error("X tiene duplicados, un valor de x solo puede ser declarado una vez: puntos de x repetidos = " +  points.x)
     }
     if (hasDuplicates(points.y)) {
-      throw Error("Y has duplicates, a value of Y can only be declared once: y points = " + points.y);
+      throw Error("Y tiene duplicados, un valor de x solo puede ser declarado una vez: puntos de y repetidos = " + points.y);
     }
   
     let n = points.x.length;
@@ -53,7 +53,6 @@ const splinesCubicFunction = points => {
        return;
      }
   
-     // interpolation conditions 
   
      for( let i = 0; i < n-1; i++){
        A[i+1][4*(i+1)-4] = pow(parseFloat(points.x[i+1]), 3);
@@ -72,7 +71,6 @@ const splinesCubicFunction = points => {
      b[0][0] = parseFloat(points.y[0]);
   
      
-     // continuity conditions
      for(let i =1; i < n-1; i++){
        A[n-1+i][4*i-4] = pow(parseFloat(points.x[i]),3);
        A[n-1+i][4*i-3] = pow(parseFloat(points.x[i]),2);
@@ -86,8 +84,7 @@ const splinesCubicFunction = points => {
        b[n-1+i][0] = 0;
      }
   
-     
-     //softness condition
+
   
      for(let i =1; i < n-1; i++){
        A[2*n-3+i][4*i-4] = 3*pow(parseFloat(points.x[i]),2);
@@ -103,7 +100,6 @@ const splinesCubicFunction = points => {
     }
   
   
-     //concavity conditions
   
      for(let i =1; i < n-1; i++){
       A[3*n-5+i][4*i-4] = 6*parseFloat(points.x[i]);
@@ -119,7 +115,6 @@ const splinesCubicFunction = points => {
     }
     
     
-    //ultimate condition
   
     A[m-2][0] = 6*parseFloat(points.x[0]);
     A[m-2][1] = 2;
