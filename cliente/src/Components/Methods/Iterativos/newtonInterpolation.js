@@ -9,33 +9,32 @@ const newtonInterpolationFunction = points => {
       dividedDifference: undefined
     };
     if(hasDuplicates(points.x)){
-      throw Error("X has duplicates, a value of X can only be declared once: x points = " +  points.x)
+      throw Error("X tiene duplicados, un valor de x solo puede ser declarado una vez: puntos de x repetidos = " +  points.x)
     }
     if (hasDuplicates(points.y)) {
-      throw Error("Y has duplicates, a value of Y can only be declared once: y points = " + points.y);
+      throw Error("Y tiene duplicados, un valor de x solo puede ser declarado una vez: puntos de y repetidos = " + points.y);
     }
     let expression = "";
     let degree = points.x.length;
-    // Create a square matrix to hold the pyramid
+    
     let pyramid = Array(degree);
     for (let i = 0; i < degree; i++) {
       pyramid[i] = new Array(degree).fill(0);
       for (let j = 0; j < degree; j++) {
-        // The first column is just y
+        
         if (j === 0) pyramid[i][j] = parseFloat(points.y[i]);
       }
     }
     for (let j = 1; j < degree; j++) {
-      // we start with the second column
+      
       for (let i = 0; i < degree - j; i++) {
-        // create pyramid by updating other columns
+        
         pyramid[i][j] =
           (pyramid[i + 1][j - 1] - pyramid[i][j - 1]) /
           (points.x[i + j] - points.x[i]);
       }
     }
-    // the resulting coefficients are in pyramid[0]
-    // Now we
+    
     for (let i = 0; i < degree; i++) {
       if (i === 0) {
         if (pyramid[0][i] < 0) {
