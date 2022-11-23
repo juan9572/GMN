@@ -88,7 +88,7 @@ const TableForm = () => {
               }));
             }}
           >
-            Change the points
+            Cambiar los puntos
           </button>
         </CenteredColumn>
       )}
@@ -96,7 +96,7 @@ const TableForm = () => {
         <div>
           {!error ? (
             <div>
-              <p>Newton’s Divided Difference Table</p>
+              <p>Tabla de diferencias divididas de Newton</p>
               {
                 results.dividedDifference && (
                   <Table id="table" style={{overflowX:"scroll"}}>
@@ -157,9 +157,9 @@ const TableForm = () => {
                   </Table>
                 )
               }
-              <p>Newton's polynomial coefficients:</p>
+              <p>Coeficientes polinomiales de Newton:</p>
               <p>[{results.dividedDifference[0].join(", ")}]</p>
-              <p>Newton's polynom</p>
+              <p>Polinomio de Newton</p>
               {results.polynom && setPlotState() && (
                 <div>
                   <p>{results.polynom.replace(/\\cdot/g, "")}</p>
