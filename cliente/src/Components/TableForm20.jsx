@@ -90,7 +90,7 @@ const TableForm = () => {
                 }));
               }}
             >
-              Change the points
+              Cambiar puntos
             </button>
           </CenteredColumn>
         )}
