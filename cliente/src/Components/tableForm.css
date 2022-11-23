@@ -1,0 +1,24 @@
+.data__method {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+}
+
+.form {
+  display: grid;
+  place-items: center;
+}
+
+.table {
+  display: grid;
+  place-items: start end;
+}
+
+@media screen and (max-width: 1024px) {
+    .data__method {
+        grid-template-columns: 1fr;
+    }
+    .table {
+      place-items: center start;
+    }
+}

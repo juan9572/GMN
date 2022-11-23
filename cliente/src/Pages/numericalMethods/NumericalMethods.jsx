@@ -1,8 +1,10 @@
-import './numericalMethods.css'
+import Metodos from './../../Components/Metodos'
 
 const NumericalMethods = () => {
   return (
-    <div>NumericalMethods</div>
+    <>
+      <Metodos />
+    </>
   )
 }
 

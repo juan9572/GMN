@@ -1,0 +1,31 @@
+@media screen and (max-width: 1024px) {
+    .main__header {
+        height: fit-content;
+        padding: 12rem 0;
+    }
+
+    .main__header-container {
+        gap: 0;
+    }
+
+    .amin__header-circle {
+        width: 16rem;
+        height: 16rem;
+    }
+}
+
+@media screen and (max-width: 600px) {
+  .main__header {
+    margin-top: 0;
+    padding: 12rem 0 0;
+    height: 100vh;
+  }
+
+  .main__header-image, .main__header-circle {
+    display: none;
+  }
+
+  .main__header-container {
+    grid-template-columns: 1fr;
+  }
+}

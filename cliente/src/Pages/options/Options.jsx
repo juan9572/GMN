@@ -1,8 +1,10 @@
-import './options.css'
+import FAQs from '../../Components/FAQs'
 
 const Options = () => {
   return (
-    <div>Options</div>
+    <>
+      <FAQs />
+    </>
   )
 }
 

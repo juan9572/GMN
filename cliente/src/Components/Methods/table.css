@@ -1,0 +1,30 @@
+#title {
+  text-align: center;
+}
+
+#table {
+  border-collapse: collapse;
+  border: 3px solid #ddd;
+}
+
+#table td,
+#table th {
+  border: 1px solid #ddd;
+  padding: 12px;
+  color: var(--color-text-3);
+}
+
+tr:nth-of-type(odd) { 
+    background: #eee; 
+  }
+
+#table tr:hover {
+  background-color: #ddd;
+}
+
+#table th {
+  padding: 10px;
+  text-align: center;
+  background: var(--color-text-1);
+  color: white;
+}

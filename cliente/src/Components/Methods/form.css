@@ -1,0 +1,135 @@
+  .form {
+    padding: 0;
+    background-color: var(--color-primary-variant);
+    border-radius: 8px;
+    overflow: hidden;
+    display: grid;
+    gap: 1rem;
+    padding: 1em 2em;
+    box-shadow: 2px 2px 8px 0px rgba(0,0,0,0.5);
+  }
+
+  .form h2 {
+    margin-top: 2rem;
+  }
+
+  fieldset {
+    border: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .form-row {
+    margin-top: 2rem;
+    padding: 8px 13px 2px 17px;
+  }
+  
+  .form-row label {
+    color: var(--color-text-1);
+    font-weight: 800;
+    letter-spacing: .43px;
+    line-height: 26px;
+    text-transform: uppercase;
+    display: block;
+  }
+
+  .form-row input:focus {
+    border-color: var(--color-text-1);
+  }
+  
+  .form-row input,
+  .form-row textarea {
+    display: block;
+    border: none;
+    outline: none;
+    width: 100%;
+    border-radius: 0.5rem;
+    color: #000;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 26px;
+    padding: 5px 20px 8px 0;
+  }
+  
+  .submit-row {
+    text-align: left;
+    padding: 12px 10px 13px 0;
+    margin-top: 1rem;
+    line-height: 26px;
+  }
+  
+  .form-submit {
+    margin-top: 1rem;
+    width: 100%;
+    -webkit-appearance: none;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    color: #fff;
+    background: var(--color-text-1);
+    height: 40px;
+    white-space: nowrap;
+    display: inline-block;
+    line-height: 40px;
+    padding: 0 14px;
+    box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .025em;
+    text-decoration: none;
+    transition: var(--transition);
+  }
+
+  .form-submit:hover {
+    background: var(--color-text-2);
+  }
+  
+
+  @media (min-width: 670px) {
+    form {
+      padding: 10px 18px 20px 24px;
+      width: 400px;
+    }
+  
+    .form-row {
+      margin-top: 0;
+      padding: 4px 0;
+      max-width: 600px;
+      border-bottom: none;
+    }
+  
+    .form-row label {
+      font-size: 17px;
+      font-weight: 500;
+      margin-right: 20px;
+      align-self: center;
+      letter-spacing: normal;
+      text-transform: none;
+    }
+  
+    .form-row:last-child label {
+      align-self: flex-start;
+      padding-top: 7px;
+    }
+  
+    .form-row input,
+    .form-row textarea {
+      align-self: center;
+      padding: 5px 20px 8px 13px;
+      flex: 70%;
+      width: 100%;
+      border: 1px solid #e6eef8;
+    }
+  
+    .form-row textarea {
+      padding: 7px 20px 7px 13px;
+      min-height: 100px;
+    }
+  
+    .submit-row {
+      padding: 12px 0 0;
+    }
+  }

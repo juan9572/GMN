@@ -1,0 +1,53 @@
+.section__head.specific {
+  display: grid;
+  grid-template-columns: 2fr 2fr;
+  gap: 2rem;
+}
+
+.section__head.specific h3 {
+  color:var(--color-primary);
+}
+
+.left {
+  display: grid;
+  grid-template-columns: 0fr 2fr;
+  gap: 1rem;
+  place-items: center start;
+}
+
+.right {
+  display: grid;
+  place-items: start end;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.iMetodo {
+  font-size: 1.8rem;
+}
+
+.buttons a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spefici__metodo__wrapper{
+  margin-top: 6rem;
+}
+
+@media screen and (max-width: 600px) {
+  .section__head.specific {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .right {
+    place-items: center start;
+  }
+}
