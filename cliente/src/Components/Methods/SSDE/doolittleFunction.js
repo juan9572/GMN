@@ -48,7 +48,7 @@ const doolittleFunction = (matrixA, B) => {
       finalSolution: []
     };
     if (det(matrixA) === 0) {
-      throw Error("La determinante de la matrix no puede ser cero");
+      throw Error("La determinante de la matriz no puede ser cero");
     }
     let n = matrixA.length;
     let L = copyFunction(eye(n));
