@@ -47,7 +47,7 @@ const copyFunction = inObject => {
       finalSolution: []
     };
     if (det(matrixA) === 0) {
-      throw Error("Determinant of the matrix cannot be zero");
+      throw Error("La determinante de la matrix no puede ser cero");
     }
     let n = matrixA.length;
     let L = copyFunction(eye(n));
@@ -83,7 +83,7 @@ const copyFunction = inObject => {
       U: copyFunction(U)
     });
     results.conclusion =
-      "After applying regressive and progressive substitution we get :";
+      "Tras aplicar la sustitución regresiva y progresiva obtenemos :";
     let resultZ = progressiveSustitution(L, B);
     results.finalSolution = usolve(U, resultZ);
     return results;
