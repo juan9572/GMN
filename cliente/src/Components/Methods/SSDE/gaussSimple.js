@@ -83,10 +83,9 @@ const gaussSimpleFunction = (matrixA, B) => {
   }
   let resultX = usolve(
     M.map(function(val) {
-      // A = all columns of M except the last one
       return val.slice(0, -1);
     }),
-    getCol(M, n) // B = last column of M
+    getCol(M, n)
   );
   results.conclusion = "After applying regressive substitution we get :";
   results.finalSolution = resultX;

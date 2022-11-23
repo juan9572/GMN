@@ -142,7 +142,12 @@ const TableForm = () => {
             math={"x = " + renderLatexMatrix(results.finalSolution, 6)}
           />
         </div>
-      ) : ""}
+      ) : (error && (
+        <div>
+          <p>{error}</p>
+        </div>
+        )
+      )}
         </div>
     </>
   )

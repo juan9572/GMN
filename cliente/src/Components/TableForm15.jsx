@@ -210,7 +210,12 @@ const TableForm = () => {
               results.spectralRadiance}
           </p>
           </div>
-          ):<p></p>}
+          ):(error && (
+            <div>
+              <p>{error}</p>
+            </div>
+            )
+          )}
         <div className="table">
             <IterativoTable data={results?results.iterations:null} />
         </div>

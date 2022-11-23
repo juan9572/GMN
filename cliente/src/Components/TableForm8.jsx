@@ -43,6 +43,7 @@ const TableForm = () => {
           conclusion: undefined,
           finalSolution: [],
         });
+        console.log(e);
         setError(e + "");
       }
     } else {
@@ -132,7 +133,7 @@ const TableForm = () => {
             return (
               <BlockMath
                 key={index}
-                math={"Step_" + index + " = " + renderLatexMatrix(matrix, 6)}
+                math={index + " = " + renderLatexMatrix(matrix, 6)}
               />
             );
           })}
@@ -141,7 +142,12 @@ const TableForm = () => {
             math={"x = " + renderLatexMatrix(results.finalSolution, 6)}
           />
         </div>
-      ) : ""}
+      ) : (error && (
+        <div>
+          <p>{error}</p>
+        </div>
+        )
+      )}
         </div>
     </>
   )
